@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">OCCParking</string>
+
+    <!-- parking lot format strings -->
+    <string name="parking_adams_fmt">Adams Lot: %1$.02f%%</string>
+    <string name="parking_a_fmt">Lot A: %1$.02f%%</string>
+    <string name="parking_b_fmt">Lot B: %1$.02f%%</string>
+    <string name="parking_c_fmt">Lot C: %1$.02f%%</string>
+    <string name="parking_d_fmt">Lot D: %1$.02f%%</string>
+    <string name="parking_e_fmt">Lot E: %1$.02f%%</string>
+    <string name="parking_g_fmt">Lot G: %1$.02f%%</string>
+
+    <string name="capacity_fmt">Capacity: %1$d</string>
+    <string name="occupied_fmt">Occupied: %1$d</string>
+    <string name="free_fmt">Free: %1$d</string>
+
+
+</resources>
