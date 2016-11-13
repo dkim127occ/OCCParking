@@ -9,6 +9,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+        </activity>
+        <activity android:name=".LotAdamsDetailActivity">
+        </activity>
+        <activity android:name=".OCCParkingTitle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,6 +22,8 @@
         <activity android:name=".LotAdamsDetailActivity" />
         <activity android:name=".LotADetailsActivity" />
         <activity android:name=".LotBDetailsActivity"></activity>
+        <activity android:name=".LotEDetails">
+        </activity>
     </application>
 
 </manifest>
