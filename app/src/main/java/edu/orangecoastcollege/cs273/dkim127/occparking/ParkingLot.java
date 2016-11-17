@@ -6,6 +6,7 @@ import android.os.Parcelable;
 
 public class ParkingLot implements Parcelable
 {
+    public static final String TAG = "ParkingLot";
 
     private String name;
 
