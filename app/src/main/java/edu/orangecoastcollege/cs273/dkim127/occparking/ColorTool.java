@@ -2,10 +2,6 @@ package edu.orangecoastcollege.cs273.dkim127.occparking;
 
 import android.graphics.Color;
 
-/**
- * Created by casque on 11/17/16.
- */
-
 public class ColorTool
 {
     public static final int ADAMS = 0xf5ff00;

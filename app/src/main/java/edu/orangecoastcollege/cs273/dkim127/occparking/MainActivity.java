@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 //intent = new Intent(context, LotDDetailsActivity.class);
             }
-            else if (ColorTool.closeMatch((ColorTool.E, touchColor, tolerance))
+            else if (ColorTool.closeMatch(ColorTool.E, touchColor, tolerance))
             {
                 intent = new Intent(context, LotEDetails.class);
             }
