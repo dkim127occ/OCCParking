@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             else
             {
                 // invalid color region
+                // terrible hack!
                 intent = new Intent();
                 return true;
             }
