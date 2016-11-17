@@ -3,22 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_lot_adams"
+    android:id="@+id/activity_lot_c_details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.orangecoastcollege.cs273.dkim127.occparking.LotAdamsDetailActivity"
+    tools:context="edu.orangecoastcollege.cs273.dkim127.occparking.LotCDetailsActivity"
     android:orientation="vertical">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/adams"
-        android:id="@+id/imageView2"
-        android:adjustViewBounds="true"/>
+        app:srcCompat="@drawable/lot_c"
+        android:id="@+id/imageView3"/>
 
     <LinearLayout
         android:orientation="vertical"
@@ -26,31 +25,29 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:text="@string/parking_adams_fmt"
+            android:text="@string/parking_c_fmt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/adamsDetailTextView"
-            android:textAlignment="center"
+            android:id="@+id/lotCDetailTextView"
             android:textSize="24sp"
-            android:layout_marginTop="10dp"/>
+            android:textAlignment="center"/>
 
         <TextView
             android:text="@string/free_fmt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/adamsFreeTextView"/>
+            android:id="@+id/lotCFreeTextView"/>
 
         <TextView
             android:text="@string/occupied_fmt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/adamsOccupiedTextView"/>
+            android:id="@+id/lotCOccupiedTextView"/>
 
         <TextView
             android:text="@string/capacity_fmt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/adamsCapacityTextView"/>
+            android:id="@+id/lotCCapacityTextView"/>
     </LinearLayout>
-
 </LinearLayout>

@@ -26,4 +26,3 @@ public class OCCParkingTitle extends AppCompatActivity {
         timer.schedule(mapTask, 2000);
     }
 }
-

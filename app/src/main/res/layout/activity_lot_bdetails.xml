@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_lot_bdetails"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="edu.orangecoastcollege.cs273.dkim127.occparking.LotBDetailsActivity"
+    android:orientation="vertical">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/lot_b"
+        android:id="@+id/lotBImageView"
+        android:adjustViewBounds="true"/>
+
+    <TextView
+        android:text="@string/parking_b_fmt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lotBTextView"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:text="@string/free_fmt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lotBFreeTextView"/>
+
+    <TextView
+        android:text="@string/occupied_fmt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lotBOccupiedTextView"/>
+
+    <TextView
+        android:text="@string/capacity_fmt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lotACapacityTextView"/>
+
+</LinearLayout>
