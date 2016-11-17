@@ -13,12 +13,25 @@
     tools:context="edu.orangecoastcollege.cs273.dkim127.occparking.MainActivity"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/map"
-        android:id="@+id/imageView"
-        android:adjustViewBounds="true"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/mapmask"
+            android:id="@+id/mapMaskImageView"
+            android:adjustViewBounds="true"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/map"
+            android:id="@+id/mapImageView"
+            android:adjustViewBounds="true"/>
+    </RelativeLayout>
 
     <GridLayout
         android:layout_width="match_parent"

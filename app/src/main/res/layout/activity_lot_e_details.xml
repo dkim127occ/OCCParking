@@ -12,7 +12,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/lot_e_map"
+        app:srcCompat="@drawable/lot_e"
         android:id="@+id/lotEImageView"
         android:adjustViewBounds="false"
         android:layout_alignParentLeft="true"
