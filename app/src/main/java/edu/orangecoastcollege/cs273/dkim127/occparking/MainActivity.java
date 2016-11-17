@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             int touchColor = getHotSpotColor(R.id.mapMaskImageView, x, y);
             int tolerance = 0xff;
 
-            Intent intent;
+            Intent intent = new Intent();
 
 
             if (ColorTool.closeMatch(ColorTool.ADAMS, touchColor, tolerance))
@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
             else
             {
                 // invalid color region
+                intent = new Intent();
                 return true;
             }
 
