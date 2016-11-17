@@ -1,5 +1,6 @@
 package edu.orangecoastcollege.cs273.dkim127.occparking;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -9,5 +10,7 @@ public class LotAdamsDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lot_adams_detail);
+
+        Intent intent = getIntent();
     }
 }
