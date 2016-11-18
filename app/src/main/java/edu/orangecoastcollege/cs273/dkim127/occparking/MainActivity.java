@@ -67,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
     private View.OnTouchListener touchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-            final int action = event.getAction();
             final int x = (int)event.getX();
             final int y = (int)event.getY();
 
