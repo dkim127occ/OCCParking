@@ -19,11 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".LotADetailsActivity"/>
-        <activity android:name=".LotBDetailsActivity"/>
+        <activity android:name=".LotADetailsActivity">
+        </activity>
+        <activity android:name=".LotBDetailsActivity">
+        </activity>
         <activity android:name=".LotEDetails">
         </activity>
         <activity android:name=".LotCDetailsActivity">
+        </activity>
+        <activity android:name=".LotGDetails">
         </activity>
     </application>
 
