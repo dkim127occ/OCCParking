@@ -55,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Listener for tapping regions in the main parking lot imageview
+     */
     private View.OnTouchListener touchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
@@ -65,10 +67,9 @@ public class MainActivity extends AppCompatActivity {
 
             Log.i("MainActivity", "THIS SHOULD BE RUNNING");
             int touchColor = getHotSpotColor(R.id.mapMaskImageView, x, y);
-            int tolerance = 0xff;
+            int tolerance = 0xf;
 
             Intent intent = new Intent();
-
 
             if (ColorTool.closeMatch(ColorTool.ADAMS, touchColor, tolerance))
             {
@@ -97,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else if (ColorTool.closeMatch(ColorTool.G, touchColor, tolerance))
             {
-                //intent = new Intent(context, LotGDetailsActivity.class);
+                intent = new Intent(context, LotGDetails.class);
             }
             else
             {
