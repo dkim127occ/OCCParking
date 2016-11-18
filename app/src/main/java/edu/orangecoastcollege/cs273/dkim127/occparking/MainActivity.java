@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView lotDTextView;
     private TextView lotETextView;
     private TextView lotGTextView;
-    private ImageView mapImageView;
+    private ImageView mapMaskView;
 
     ParkingLot parkingLot;
     Context context;
@@ -37,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
         lotATextView = (TextView) findViewById(R.id.lotATextView);
         lotBTextView = (TextView) findViewById(R.id.lotBTextView);
 
-        mapImageView = (ImageView) findViewById(R.id.mapImageView);
+        mapMaskView = (ImageView) findViewById(R.id.mapImageView);
 
-        mapImageView.setOnTouchListener(touchListener);
+        mapMaskView.setOnTouchListener(touchListener);
     }
 
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         img.setDrawingCacheEnabled(true);
         Bitmap hotSpots = Bitmap.createBitmap(img.getDrawingCache());
         img.setDrawingCacheEnabled(false);
-        return hotSpots.getPixel(x,y);
+        return hotSpots.getPixel(x, y) & 0xFFFFFF;
     }
 
 
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             final int x = (int)event.getX();
             final int y = (int)event.getY();
 
+            Log.i("MainActivity", "THIS SHOULD BE RUNNING");
             int touchColor = getHotSpotColor(R.id.mapMaskImageView, x, y);
             int tolerance = 0xff;
 
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             if (ColorTool.closeMatch(ColorTool.ADAMS, touchColor, tolerance))
             {
                 intent = new Intent(context, LotAdamsDetailActivity.class);
+                Log.i("MainActivity", "adams clicked");
             }
             else if (ColorTool.closeMatch(ColorTool.A, touchColor, tolerance))
             {
@@ -100,10 +103,11 @@ public class MainActivity extends AppCompatActivity {
             {
                 // invalid color region
                 // terrible hack!
+                Log.i("MainActivity", "invalid color region " + Integer.toHexString(touchColor));
                 intent = new Intent();
                 return true;
             }
-
+            Log.i("MainActivity", "starting intent...");
             intent.putExtra(ParkingLot.TAG, parkingLot);
             startActivity(intent);
             return true;

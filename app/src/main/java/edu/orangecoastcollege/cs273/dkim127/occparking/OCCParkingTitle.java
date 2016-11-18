@@ -17,7 +17,7 @@ public class OCCParkingTitle extends AppCompatActivity {
         TimerTask mapTask = new TimerTask() {
             @Override
             public void run() {
-                finish();
+               // finish();
                 startActivity(new Intent(OCCParkingTitle.this, MainActivity.class));
             }
         };

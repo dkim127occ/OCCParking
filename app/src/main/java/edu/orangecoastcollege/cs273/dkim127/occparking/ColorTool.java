@@ -12,7 +12,7 @@ public class ColorTool
     public static final int E = 0x00ffe9;
     public static final int G = 0x765bff;
 
-    public static boolean closeMatch(int color1, int color2, int tolerance)
+    public static boolean closeMatch(int color1, int color2, long tolerance)
     {
         if ((int) Math.abs(color1 - color2) > tolerance)
             return false;
