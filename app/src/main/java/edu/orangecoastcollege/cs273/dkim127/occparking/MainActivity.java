@@ -44,7 +44,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Returns a hexadecimal color value of the tapped area given the resource ID of tapped image and coordinates.
+     * @param hotSpotID resource ID of the ImageView to fetch the color from
+     * @param x x-coordinate of the tapped region
+     * @param y y-coordinate of the tapped region
+     * @return RGB in hex without the alpha value
+     */
     public int getHotSpotColor(int hotSpotID, int x, int y)
     {
         ImageView img = (ImageView) findViewById(hotSpotID);
