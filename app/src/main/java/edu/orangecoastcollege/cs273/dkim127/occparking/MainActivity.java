@@ -67,55 +67,43 @@ public class MainActivity extends AppCompatActivity {
     private View.OnTouchListener touchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
+            final int action = event.getAction();
             final int x = (int)event.getX();
             final int y = (int)event.getY();
 
-            Log.i("MainActivity", "THIS SHOULD BE RUNNING");
-            int touchColor = getHotSpotColor(R.id.mapMaskImageView, x, y);
-            int tolerance = 0xf;
+            if (action == MotionEvent.ACTION_UP) {
+                Log.i("MainActivity", "THIS SHOULD BE RUNNING");
+                int touchColor = getHotSpotColor(R.id.mapMaskImageView, x, y);
+                int tolerance = 0xf;
 
-            Intent intent = new Intent();
+                Intent intent = new Intent();
 
-            if (ColorTool.closeMatch(ColorTool.ADAMS, touchColor, tolerance))
-            {
-                intent = new Intent(context, LotAdamsDetailActivity.class);
-                Log.i("MainActivity", "adams clicked");
+                if (ColorTool.closeMatch(ColorTool.ADAMS, touchColor, tolerance)) {
+                    intent = new Intent(context, LotAdamsDetailActivity.class);
+                    Log.i("MainActivity", "adams clicked");
+                } else if (ColorTool.closeMatch(ColorTool.A, touchColor, tolerance)) {
+                    intent = new Intent(context, LotADetailsActivity.class);
+                } else if (ColorTool.closeMatch(ColorTool.B, touchColor, tolerance)) {
+                    intent = new Intent(context, LotBDetailsActivity.class);
+                } else if (ColorTool.closeMatch(ColorTool.C, touchColor, tolerance)) {
+                    intent = new Intent(context, LotCDetailsActivity.class);
+                } else if (ColorTool.closeMatch(ColorTool.D, touchColor, tolerance)) {
+                    //intent = new Intent(context, LotDDetailsActivity.class);
+                } else if (ColorTool.closeMatch(ColorTool.E, touchColor, tolerance)) {
+                    intent = new Intent(context, LotEDetails.class);
+                } else if (ColorTool.closeMatch(ColorTool.G, touchColor, tolerance)) {
+                    intent = new Intent(context, LotGDetails.class);
+                } else {
+                    // invalid color region
+                    // terrible hack!
+                    Log.i("MainActivity", "invalid color region " + Integer.toHexString(touchColor));
+                    intent = new Intent();
+                    return true;
+                }
+                Log.i("MainActivity", "starting intent...");
+                intent.putExtra(ParkingLot.TAG, parkingLot);
+                startActivity(intent);
             }
-            else if (ColorTool.closeMatch(ColorTool.A, touchColor, tolerance))
-            {
-                intent = new Intent(context, LotADetailsActivity.class);
-            }
-            else if (ColorTool.closeMatch(ColorTool.B, touchColor, tolerance))
-            {
-                intent = new Intent(context, LotBDetailsActivity.class);
-            }
-            else if (ColorTool.closeMatch(ColorTool.C, touchColor,tolerance))
-            {
-                intent = new Intent(context,LotCDetailsActivity.class);
-            }
-            else if (ColorTool.closeMatch(ColorTool.D, touchColor, tolerance))
-            {
-                //intent = new Intent(context, LotDDetailsActivity.class);
-            }
-            else if (ColorTool.closeMatch(ColorTool.E, touchColor, tolerance))
-            {
-                intent = new Intent(context, LotEDetails.class);
-            }
-            else if (ColorTool.closeMatch(ColorTool.G, touchColor, tolerance))
-            {
-                intent = new Intent(context, LotGDetails.class);
-            }
-            else
-            {
-                // invalid color region
-                // terrible hack!
-                Log.i("MainActivity", "invalid color region " + Integer.toHexString(touchColor));
-                intent = new Intent();
-                return true;
-            }
-            Log.i("MainActivity", "starting intent...");
-            intent.putExtra(ParkingLot.TAG, parkingLot);
-            startActivity(intent);
             return true;
         }
     };
