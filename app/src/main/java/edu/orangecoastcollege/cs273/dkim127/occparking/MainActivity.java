@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView lotAdamsTextView;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mapMaskView;
 
     ParkingLot parkingLot;
+    ArrayList<ParkingLot> parkingLotArrayList;
     Context context;
 
     @Override
