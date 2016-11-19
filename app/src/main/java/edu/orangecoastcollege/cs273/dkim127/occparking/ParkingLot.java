@@ -2,6 +2,7 @@ package edu.orangecoastcollege.cs273.dkim127.occparking;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 /**
  * An object that represents an entire parking lot comprised of "rows" of parking spaces.
@@ -11,8 +12,11 @@ public class ParkingLot implements Parcelable
 {
     public static final String TAG = "ParkingLot";
 
+    private int id;
     private String name;
     private ParkingSpace[][] rows;
+    private int capacity;
+    private int filled;
 
     public ParkingLot()
     {
@@ -37,8 +41,52 @@ public class ParkingLot implements Parcelable
                 }
             }
         }
+        Log.e("ParkingLot", "invalid coordinates");
         return null;
     }
+
+    public ParkingSpace getParkingSpaceByID(int id)
+    {
+        for (ParkingSpace[] row : rows)
+        {
+            for (ParkingSpace parkingSpace : row)
+            {
+                if (parkingSpace.getId() == id)
+                {
+                    return parkingSpace;
+                }
+            }
+        }
+        Log.e("ParkingLot", "invalid ID");
+        return null;
+    }
+
+
+    /**
+     * Returns a specified row of the parking lot containing parking spaces
+     * @param idx row number of the parking space
+     * @return ParkingSpace[] at that index, or null if out of bounds
+     */
+    public ParkingSpace[] getParkingRowAt(int idx)
+    {
+        if (idx < rows.length)
+        {
+            return rows[idx];
+        }
+        Log.e("ParkingLot", "invalid row index");
+        return null;
+    }
+
+
+    /**
+     * Returns the name of this parking lot (Adams, A, B, C, etc).
+     * @return the name of this parking lot
+     */
+    public String getName()
+    {
+        return name;
+    }
+
 
 
     /*
@@ -46,7 +94,8 @@ public class ParkingLot implements Parcelable
      */
     private ParkingLot(Parcel source)
     {
-        // ORDER: name, length of rows, (length of rows[i], rows[i]) x length
+        // ORDER: id, name, length of rows, (length of rows[i], rows[i]) x length, capacity, filled
+        id = source.readInt();
         name = source.readString();
         int rowsLen = source.readInt();
         rows = new ParkingSpace[rowsLen][];
@@ -56,6 +105,8 @@ public class ParkingLot implements Parcelable
             rows[i] = new ParkingSpace[rowLen];
             source.readTypedArray(rows[i], ParkingSpace.CREATOR);
         }
+        capacity = source.readInt();
+        filled = source.readInt();
     }
 
     public static final Parcelable.Creator<ParkingLot> CREATOR = new Creator<ParkingLot>() {
@@ -76,9 +127,10 @@ public class ParkingLot implements Parcelable
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
-
-        // ORDER: name, length of rows, (length of rows[i], rows[i]) x length
+    public void writeToParcel(Parcel dest, int flags)
+    {
+        // ORDER: id, name, length of rows, (length of rows[i], rows[i]) x length, capacity, filled
+        dest.writeInt(id);
         dest.writeString(name);
         dest.writeInt(rows.length);
         for (ParkingSpace[] row : rows)
@@ -86,6 +138,7 @@ public class ParkingLot implements Parcelable
             dest.writeInt(row.length);
             dest.writeTypedArray(row, flags);
         }
-
+        dest.writeInt(capacity);
+        dest.writeInt(filled);
     }
 }

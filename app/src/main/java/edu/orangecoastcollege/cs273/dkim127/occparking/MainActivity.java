@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             final int y = (int)event.getY();
 
             if (action == MotionEvent.ACTION_UP) {
-                Log.i("MainActivity", "THIS SHOULD BE RUNNING");
+                //Log.i("MainActivity", "THIS SHOULD BE RUNNING");
                 int touchColor = getHotSpotColor(R.id.mapMaskImageView, x, y);
                 int tolerance = 0xf;
 

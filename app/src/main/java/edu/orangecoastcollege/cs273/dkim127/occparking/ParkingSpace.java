@@ -9,6 +9,7 @@ import android.os.Parcelable;
  */
 public class ParkingSpace implements Parcelable
 {
+    private int id;
     private int filled;
     private double x;
     private double y;
@@ -17,6 +18,11 @@ public class ParkingSpace implements Parcelable
     {
         this.x = x;
         this.y = y;
+    }
+
+    public int getId()
+    {
+        return id;
     }
 
     public double getX()
@@ -43,6 +49,7 @@ public class ParkingSpace implements Parcelable
 
     public ParkingSpace(Parcel source)
     {
+        id = source.readInt();
         filled = source.readInt();
         x = source.readDouble();
         y = source.readDouble();
@@ -55,7 +62,10 @@ public class ParkingSpace implements Parcelable
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-
+        dest.writeInt(id);
+        dest.writeInt(filled);
+        dest.writeDouble(x);
+        dest.writeDouble(y);
     }
 
     public static final Parcelable.Creator<ParkingSpace> CREATOR = new Creator<ParkingSpace>() {
