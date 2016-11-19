@@ -45,6 +45,11 @@ public class ParkingLot implements Parcelable
         return null;
     }
 
+    /**
+     * Returns a ParkingSpace object given an id number
+     * @param id ID number of the parking space
+     * @return Parking space with the correct ID, null otherwise
+     */
     public ParkingSpace getParkingSpaceByID(int id)
     {
         for (ParkingSpace[] row : rows)
