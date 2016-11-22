@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_lot_b"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="edu.orangecoastcollege.cs273.dkim127.occparking.LotBDetailsActivity"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/lot_b"
+        android:id="@+id/imageView2"
+        android:adjustViewBounds="true"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:text="@string/parking_b_fmt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bDetailTextView"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:text="@string/free_fmt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bFreeTextView"/>
+
+        <TextView
+            android:text="@string/occupied_fmt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bOccupiedTextView"/>
+
+        <TextView
+            android:text="@string/capacity_fmt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bCapacityTextView"/>
+    </LinearLayout>
+
+</LinearLayout>
