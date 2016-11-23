@@ -16,6 +16,7 @@ public class ColorToolUnitTest
     public static final int D = 0x60b8f0;
     public static final int E = 0x00ffe0;
     public static final int G = 0x765bf0;
+    public static final int tolerance = 0xf;
 
     @Before
     public void setUp()
@@ -32,48 +33,48 @@ public class ColorToolUnitTest
     public void testCloseMatchAdams()
     {
         int color = ADAMS + (int) (Math.random() * 100) % 16;
-        assertTrue(ColorTool.closeMatch(ColorTool.ADAMS, color, 0xf));
+        assertTrue(ColorTool.closeMatch(ColorTool.ADAMS, color, tolerance));
     }
 
     @Test
     public void testCloseMatchA()
     {
         int color = A + (int) (Math.random() * 100) % 16;
-        assertTrue(ColorTool.closeMatch(ColorTool.A, color, 0xf));
+        assertTrue(ColorTool.closeMatch(ColorTool.A, color, tolerance));
     }
 
     @Test
     public void testCloseMatchB()
     {
         int color = B + (int) (Math.random() * 100) % 16;
-        assertTrue(ColorTool.closeMatch(ColorTool.B, color, 0xf));
+        assertTrue(ColorTool.closeMatch(ColorTool.B, color, tolerance));
     }
 
     @Test
     public void testCloseMatchC()
     {
         int color = C + (int) (Math.random() * 100) % 16;
-        assertTrue(ColorTool.closeMatch(ColorTool.C, color, 0xf));
+        assertTrue(ColorTool.closeMatch(ColorTool.C, color, tolerance));
     }
 
     @Test
     public void testCloseMatchD()
     {
         int color = D + (int) (Math.random() * 100) % 16;
-        assertTrue(ColorTool.closeMatch(ColorTool.D, color, 0xf));
+        assertTrue(ColorTool.closeMatch(ColorTool.D, color, tolerance));
     }
 
     @Test
     public void testCloseMatchE()
     {
         int color = E + (int) (Math.random() * 100) % 16;
-        assertTrue(ColorTool.closeMatch(ColorTool.E, color, 0xf));
+        assertTrue(ColorTool.closeMatch(ColorTool.E, color, tolerance));
     }
 
     @Test
     public void testCloseMatchG()
     {
         int color = G + (int) (Math.random() * 100) % 16;
-        assertTrue(ColorTool.closeMatch(ColorTool.G, color, 0xf));
+        assertTrue(ColorTool.closeMatch(ColorTool.G, color, tolerance));
     }
 }
