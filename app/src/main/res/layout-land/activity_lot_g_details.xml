@@ -16,7 +16,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:srcCompat="@drawable/lot_e"
+        app:srcCompat="@drawable/lot_g"
         android:id="@+id/imageView2"
         android:adjustViewBounds="true"/>
 

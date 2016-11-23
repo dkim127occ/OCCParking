@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OCCParking</string>
+    <string name="capacity_fmt">Capacidad: %1$d</string>
+    <string name="free_fmt">Disponibles: %1$d</string>
+    <string name="occupied_fmt">Ocupados: %1$d</string>
+    <string name="parking_a_fmt">Lote A: %1$.02f%%</string>
+    <string name="parking_adams_fmt">Lote Adams: %1$.02f%%</string>
+    <string name="parking_b_fmt">Lote B: %1$.02f%%</string>
+    <string name="parking_c_fmt">Lote C: %1$.02f%%</string>
+    <string name="parking_d_fmt">Lote D: %1$.02f%%</string>
+    <string name="parking_e_fmt">Lote E: %1$.02f%%</string>
+    <string name="parking_g_fmt">Lote G: %1$.02f%%</string>
+</resources>
