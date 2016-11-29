@@ -24,18 +24,18 @@ public class ParkingLot implements Parcelable
     }
 
     /**
-     * Returns a ParkingSpace object given the x and y GPS coordinates.
-     * @param x X-coord of parking space
-     * @param y Y-coord of parking space
+     * Returns a ParkingSpace object given the latitude and longitude coordinates.
+     * @param latitude latitude of parking space
+     * @param longitude longitude of parking space
      * @return Parking space in that coordinate, or null if not found
      */
-    public ParkingSpace getParkingSpaceAt(double x, double y)
+    public ParkingSpace getParkingSpaceAt(float latitude, float longitude)
     {
         for (ParkingSpace[] row : rows)
         {
             for (ParkingSpace parkingSpace : row)
             {
-                if (parkingSpace.getX() == x && parkingSpace.getY() == y)
+                if (parkingSpace.getLatitude() == latitude && parkingSpace.getLongitude() == longitude)
                 {
                     return parkingSpace;
                 }

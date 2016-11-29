@@ -1,12 +1,18 @@
 package edu.orangecoastcollege.cs273.dkim127.occparking;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.StringDef;
+
+import java.util.ArrayList;
 
 
 public class DBHelper extends SQLiteOpenHelper
 {
+    @StringDef({ADAMS_TABLE, A_TABLE, B_TABLE, C_TABLE, D_TABLE, E_TABLE, G_TABLE})
+    public @interface Lot{}
     private static final String ADAMS_TABLE = "Adams";
     private static final String A_TABLE = "A";
     private static final String B_TABLE = "B";
@@ -104,5 +110,55 @@ public class DBHelper extends SQLiteOpenHelper
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+        db.execSQL("DROP TABLE IF EXISTS " + ADAMS_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + A_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + B_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + C_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + D_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + E_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + G_TABLE);
+        onCreate(db);
+    }
+
+    public ParkingLot getLot(@Lot String lotName)
+    {
+        // TODO: this is wrong as heck
+        ArrayList<ParkingSpace> rows = new ArrayList<>();
+
+        SQLiteDatabase database = this.getReadableDatabase();
+
+        Cursor cursor = database.query(
+                lotName,
+                new String[] {PARKING_LOT_KEY_FIELD_ID, FIELD_SPACE_TYPE, FIELD_LATITUDE, FIELD_LONGITUDE, FIELD_FILLED},
+                null,
+                null,
+                null, null, null, null
+        );
+
+
+        if (cursor.moveToFirst())
+        {
+            do
+            {
+                ParkingSpace space =
+                        new ParkingSpace(cursor.getInt(0),
+                                cursor.getString(1),
+                                cursor.getFloat(2),
+                                cursor.getFloat(3),
+                                cursor.getInt((4)));
+                rows.add(space);
+            }
+            while(cursor.moveToNext());
+        }
+        ParkingLot lot = new ParkingLot();
+        return lot;
+    }
+
+    public ArrayList<ParkingLot> getAllLots()
+    {
+        // TODO: gotta implement this
+        ArrayList<ParkingLot> allLots = new ArrayList<>();
+
+        return allLots;
     }
 }

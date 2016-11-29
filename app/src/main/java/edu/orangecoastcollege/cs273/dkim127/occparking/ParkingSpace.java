@@ -11,19 +11,29 @@ import android.support.annotation.IntDef;
 public class ParkingSpace implements Parcelable
 {
     private int id;
+    private String type;
+    private float latitude;
+    private float longitude;
     private int filled;
-    private double x;
-    private double y;
+
 
     @IntDef({FILLED, EMPTY})
     public @interface State {}
     public static final int FILLED = 1;
     public static final int EMPTY = 0;
 
-    public ParkingSpace(double x, double y)
+    public ParkingSpace(float latitude, float longitude)
     {
-        this.x = x;
-        this.y = y;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
+    public ParkingSpace(int id, String type, float latitude, float longitude, int filled)
+    {
+        this(latitude, longitude);
+        this.id = id;
+        this.type = type;
+        this.filled = filled;
     }
 
     /**
@@ -36,21 +46,21 @@ public class ParkingSpace implements Parcelable
     }
 
     /**
-     * Returns the GPS x-coordinate of the space
-     * @return X-coords
+     * Returns the GPS latitude of the space
+     * @return Latitude in float
      */
-    public double getX()
+    public float getLatitude()
     {
-        return x;
+        return latitude;
     }
 
     /**
-     * Returns the GPS y-coordinate of the parking space
-     * @return Y-coords
+     * Returns the GPS longitude of the parking space
+     * @return Longitude in float
      */
-    public double getY()
+    public float getLongitude()
     {
-        return y;
+        return longitude;
     }
 
     /**
@@ -60,6 +70,11 @@ public class ParkingSpace implements Parcelable
     public int isFilled()
     {
         return filled;
+    }
+
+    public String getType()
+    {
+        return type;
     }
 
     /**
@@ -76,9 +91,11 @@ public class ParkingSpace implements Parcelable
     public ParkingSpace(Parcel source)
     {
         id = source.readInt();
+        type = source.readString();
+        latitude = source.readFloat();
+        longitude = source.readFloat();
         filled = source.readInt();
-        x = source.readDouble();
-        y = source.readDouble();
+
     }
 
     @Override
@@ -89,9 +106,10 @@ public class ParkingSpace implements Parcelable
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
+        dest.writeString(type);
+        dest.writeFloat(latitude);
+        dest.writeFloat(longitude);
         dest.writeInt(filled);
-        dest.writeDouble(x);
-        dest.writeDouble(y);
     }
 
     public static final Parcelable.Creator<ParkingSpace> CREATOR = new Creator<ParkingSpace>() {
