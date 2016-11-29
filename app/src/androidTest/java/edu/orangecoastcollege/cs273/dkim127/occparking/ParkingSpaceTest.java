@@ -1,5 +1,7 @@
 package edu.orangecoastcollege.cs273.dkim127.occparking;
 
+import android.os.Parcel;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,14 +14,16 @@ import static junit.framework.Assert.assertEquals;
 public class ParkingSpaceTest {
 
     private ParkingSpace myParkingSpace;
-    double x;
-    double y;
+    float latitude;
+    float longitude;
+    int filled;
 
     @Before
     public void setUp() throws Exception {
-        x = 1.0;
-        y = 2.0;
-        myParkingSpace = new ParkingSpace(x, y);
+        latitude = 1.0f;
+        longitude = 2.0f;
+        filled = 0;
+        myParkingSpace = new ParkingSpace(latitude, longitude);
     }
 
     @After
@@ -33,24 +37,27 @@ public class ParkingSpaceTest {
     }
 
     @Test
-    public void getX() throws Exception {
-        assertEquals(x, myParkingSpace.getX());
+    public void getLatitude() throws Exception {
+        assertEquals(latitude, myParkingSpace.getLatitude());
     }
 
     @Test
-    public void getY() throws Exception {
-        assertEquals(y, myParkingSpace.getY());
+    public void getLongitude() throws Exception {
+        assertEquals(longitude, myParkingSpace.getLongitude());
     }
 
     @Test
     public void isFilled() throws Exception {
-
+        myParkingSpace.setFilled(ParkingSpace.FILLED);
+        assertEquals(ParkingSpace.FILLED, myParkingSpace.isFilled());
     }
 
     @Test
-    public void setFilled() throws Exception {
-
+    public void isEmpty() throws Exception {
+        myParkingSpace.setFilled(ParkingSpace.EMPTY);
+        assertEquals(ParkingSpace.EMPTY, myParkingSpace.isFilled());
     }
+
 
     @Test
     public void describeContents() throws Exception {
@@ -59,7 +66,13 @@ public class ParkingSpaceTest {
 
     @Test
     public void writeToParcel() throws Exception {
+        Parcel parcel = Parcel.obtain();
+        myParkingSpace.writeToParcel(parcel, 0);
 
+        parcel.setDataPosition(0);
+
+        ParkingSpace fromParcel = ParkingSpace.CREATOR.createFromParcel(parcel);
+        assertEquals(myParkingSpace, fromParcel);
     }
 
 }
