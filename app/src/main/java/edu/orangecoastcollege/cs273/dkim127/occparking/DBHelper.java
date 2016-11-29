@@ -13,13 +13,13 @@ public class DBHelper extends SQLiteOpenHelper
 {
     @StringDef({ADAMS_TABLE, A_TABLE, B_TABLE, C_TABLE, D_TABLE, E_TABLE, G_TABLE})
     public @interface Lot{}
-    private static final String ADAMS_TABLE = "Adams";
-    private static final String A_TABLE = "A";
-    private static final String B_TABLE = "B";
-    private static final String C_TABLE = "C";
-    private static final String D_TABLE = "D";
-    private static final String E_TABLE = "E";
-    private static final String G_TABLE = "G";
+    static final String ADAMS_TABLE = "Adams";
+    static final String A_TABLE = "A";
+    static final String B_TABLE = "B";
+    static final String C_TABLE = "C";
+    static final String D_TABLE = "D";
+    static final String E_TABLE = "E";
+    static final String G_TABLE = "G";
 
     private static final String PARKING_LOT_KEY_FIELD_ID = "_id";
     private static final String FIELD_SPACE_TYPE = "type";
@@ -44,7 +44,7 @@ public class DBHelper extends SQLiteOpenHelper
     {
         // Adams table
         String createQuery = "CREATE TABLE " + ADAMS_TABLE + "("
-                + PARKING_LOT_KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + PARKING_LOT_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
                 + FIELD_SPACE_TYPE + " TEXT, "
                 + FIELD_LATITUDE + " REAL, "
                 + FIELD_LONGITUDE + " REAL, "
@@ -53,7 +53,7 @@ public class DBHelper extends SQLiteOpenHelper
 
         // A table
         createQuery = "CREATE TABLE " + A_TABLE + "("
-                + PARKING_LOT_KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + PARKING_LOT_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
                 + FIELD_SPACE_TYPE + " TEXT, "
                 + FIELD_LATITUDE + " REAL, "
                 + FIELD_LONGITUDE + " REAL, "
@@ -62,7 +62,7 @@ public class DBHelper extends SQLiteOpenHelper
 
         // B table
         createQuery = "CREATE TABLE " + B_TABLE + "("
-                + PARKING_LOT_KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + PARKING_LOT_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
                 + FIELD_SPACE_TYPE + " TEXT, "
                 + FIELD_LATITUDE + " REAL, "
                 + FIELD_LONGITUDE + " REAL, "
@@ -71,7 +71,7 @@ public class DBHelper extends SQLiteOpenHelper
 
         // C table
         createQuery = "CREATE TABLE " + C_TABLE + "("
-                + PARKING_LOT_KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + PARKING_LOT_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
                 + FIELD_SPACE_TYPE + " TEXT, "
                 + FIELD_LATITUDE + " REAL, "
                 + FIELD_LONGITUDE + " REAL, "
@@ -80,7 +80,7 @@ public class DBHelper extends SQLiteOpenHelper
 
         // D table
         createQuery = "CREATE TABLE " + D_TABLE + "("
-                + PARKING_LOT_KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + PARKING_LOT_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
                 + FIELD_SPACE_TYPE + " TEXT, "
                 + FIELD_LATITUDE + " REAL, "
                 + FIELD_LONGITUDE + " REAL, "
@@ -89,7 +89,7 @@ public class DBHelper extends SQLiteOpenHelper
 
         // E table
         createQuery = "CREATE TABLE " + E_TABLE + "("
-                + PARKING_LOT_KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + PARKING_LOT_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
                 + FIELD_SPACE_TYPE + " TEXT, "
                 + FIELD_LATITUDE + " REAL, "
                 + FIELD_LONGITUDE + " REAL, "
@@ -98,7 +98,7 @@ public class DBHelper extends SQLiteOpenHelper
 
         // G table
         createQuery = "CREATE TABLE " + G_TABLE + "("
-                + PARKING_LOT_KEY_FIELD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + PARKING_LOT_KEY_FIELD_ID + " INTEGER PRIMARY KEY, "
                 + FIELD_SPACE_TYPE + " TEXT, "
                 + FIELD_LATITUDE + " REAL, "
                 + FIELD_LONGITUDE + " REAL, "
@@ -123,7 +123,7 @@ public class DBHelper extends SQLiteOpenHelper
     public ParkingLot getLot(@Lot String lotName)
     {
         // TODO: this is wrong as heck
-        ArrayList<ParkingSpace> rows = new ArrayList<>();
+        ArrayList<ArrayList<ParkingSpace>> rows = new ArrayList<>();
 
         SQLiteDatabase database = this.getReadableDatabase();
 
@@ -146,11 +146,15 @@ public class DBHelper extends SQLiteOpenHelper
                                 cursor.getFloat(2),
                                 cursor.getFloat(3),
                                 cursor.getInt((4)));
-                rows.add(space);
+
+                int rowNum = space.getId() / 100;
+                rows.get(rowNum).add(space);
             }
             while(cursor.moveToNext());
         }
         ParkingLot lot = new ParkingLot();
+        ParkingSpace[][] spaces = new ParkingSpace[rows.size()][];
+
         return lot;
     }
 

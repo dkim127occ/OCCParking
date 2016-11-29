@@ -66,6 +66,12 @@ public class ParkingLot implements Parcelable
         return null;
     }
 
+    public void setParkingRows(ParkingSpace[][] rows)
+    {
+        this.rows = rows;
+    }
+
+
 
     /**
      * Returns a specified row of the parking lot containing parking spaces
