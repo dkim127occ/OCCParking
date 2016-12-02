@@ -148,12 +148,21 @@ public class DBHelper extends SQLiteOpenHelper
                                 cursor.getInt((4)));
 
                 int rowNum = space.getId() / 100;
-                rows.get(rowNum).add(space);
+                ArrayList<ParkingSpace> row = rows.get(rowNum);
+                if (row == null || row.isEmpty())
+                {
+                    row = new ArrayList<>();
+                }
+                row.add(space);
             }
             while(cursor.moveToNext());
         }
         ParkingLot lot = new ParkingLot();
         ParkingSpace[][] spaces = new ParkingSpace[rows.size()][];
+        for (ArrayList<ParkingSpace> row : rows)
+        {
+
+        }
 
         return lot;
     }

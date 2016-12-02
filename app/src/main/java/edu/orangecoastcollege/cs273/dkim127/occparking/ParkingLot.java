@@ -14,6 +14,7 @@ public class ParkingLot implements Parcelable
 
     private int id;
     private String name;
+    // TODO: make this 1D
     private ParkingSpace[][] rows;
     private int capacity;
     private int filled;
