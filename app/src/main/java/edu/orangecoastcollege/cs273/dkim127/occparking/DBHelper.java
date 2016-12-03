@@ -123,7 +123,7 @@ public class DBHelper extends SQLiteOpenHelper
     public ParkingLot getLot(@Lot String lotName)
     {
         // TODO: this is wrong as heck
-        ArrayList<ArrayList<ParkingSpace>> rows = new ArrayList<>();
+        ArrayList<ParkingSpace> spaces = new ArrayList<>();
 
         SQLiteDatabase database = this.getReadableDatabase();
 
@@ -147,23 +147,13 @@ public class DBHelper extends SQLiteOpenHelper
                                 cursor.getFloat(3),
                                 cursor.getInt((4)));
 
-                int rowNum = space.getId() / 100;
-                ArrayList<ParkingSpace> row = rows.get(rowNum);
-                if (row == null || row.isEmpty())
-                {
-                    row = new ArrayList<>();
-                }
-                row.add(space);
+                spaces.add(space);
             }
             while(cursor.moveToNext());
         }
+
         ParkingLot lot = new ParkingLot();
-        ParkingSpace[][] spaces = new ParkingSpace[rows.size()][];
-        for (ArrayList<ParkingSpace> row : rows)
-        {
-
-        }
-
+        lot.setParkingspaces((ParkingSpace[]) spaces.toArray());
         return lot;
     }
 
@@ -171,6 +161,14 @@ public class DBHelper extends SQLiteOpenHelper
     {
         // TODO: gotta implement this
         ArrayList<ParkingLot> allLots = new ArrayList<>();
+
+        allLots.add(getLot(ADAMS_TABLE));
+        allLots.add(getLot(A_TABLE));
+        allLots.add(getLot(B_TABLE));
+        allLots.add(getLot(C_TABLE));
+        allLots.add(getLot(D_TABLE));
+        allLots.add(getLot(E_TABLE));
+        allLots.add(getLot(G_TABLE));
 
         return allLots;
     }

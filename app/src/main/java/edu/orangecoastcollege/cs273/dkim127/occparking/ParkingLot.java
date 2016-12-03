@@ -15,7 +15,7 @@ public class ParkingLot implements Parcelable
     private int id;
     private String name;
     // TODO: make this 1D
-    private ParkingSpace[][] rows;
+    private ParkingSpace[] spaces;
     private int capacity;
     private int filled;
 
@@ -32,16 +32,15 @@ public class ParkingLot implements Parcelable
      */
     public ParkingSpace getParkingSpaceAt(float latitude, float longitude)
     {
-        for (ParkingSpace[] row : rows)
+
+        for (ParkingSpace parkingSpace : spaces)
         {
-            for (ParkingSpace parkingSpace : row)
+            if (parkingSpace.getLatitude() == latitude && parkingSpace.getLongitude() == longitude)
             {
-                if (parkingSpace.getLatitude() == latitude && parkingSpace.getLongitude() == longitude)
-                {
-                    return parkingSpace;
-                }
+                return parkingSpace;
             }
         }
+
         Log.e("ParkingLot", "invalid coordinates");
         return null;
     }
@@ -53,42 +52,22 @@ public class ParkingLot implements Parcelable
      */
     public ParkingSpace getParkingSpaceByID(int id)
     {
-        for (ParkingSpace[] row : rows)
+        for (ParkingSpace parkingSpace : spaces)
         {
-            for (ParkingSpace parkingSpace : row)
+            if (parkingSpace.getId() == id)
             {
-                if (parkingSpace.getId() == id)
-                {
-                    return parkingSpace;
-                }
+                return parkingSpace;
             }
         }
+
         Log.e("ParkingLot", "invalid ID");
         return null;
     }
 
-    public void setParkingRows(ParkingSpace[][] rows)
+    public void setParkingspaces(ParkingSpace[] spaces)
     {
-        this.rows = rows;
+        this.spaces = spaces;
     }
-
-
-
-    /**
-     * Returns a specified row of the parking lot containing parking spaces
-     * @param idx row number of the parking space
-     * @return ParkingSpace[] at that index, or null if out of bounds
-     */
-    public ParkingSpace[] getParkingRowAt(int idx)
-    {
-        if (idx < rows.length)
-        {
-            return rows[idx];
-        }
-        Log.e("ParkingLot", "invalid row index");
-        return null;
-    }
-
 
     /**
      * Returns the name of this parking lot (Adams, A, B, C, etc).
@@ -106,17 +85,12 @@ public class ParkingLot implements Parcelable
      */
     private ParkingLot(Parcel source)
     {
-        // ORDER: id, name, length of rows, (length of rows[i], rows[i]) x length, capacity, filled
+        // ORDER: id, name, length of spaces, array of spaces, capacity, filled
         id = source.readInt();
         name = source.readString();
         int rowsLen = source.readInt();
-        rows = new ParkingSpace[rowsLen][];
-        for (int i = 0; i < rowsLen; i++)
-        {
-            int rowLen = source.readInt();
-            rows[i] = new ParkingSpace[rowLen];
-            source.readTypedArray(rows[i], ParkingSpace.CREATOR);
-        }
+        spaces = new ParkingSpace[rowsLen];
+        source.readTypedArray(spaces, ParkingSpace.CREATOR);
         capacity = source.readInt();
         filled = source.readInt();
     }
@@ -141,15 +115,11 @@ public class ParkingLot implements Parcelable
     @Override
     public void writeToParcel(Parcel dest, int flags)
     {
-        // ORDER: id, name, length of rows, (length of rows[i], rows[i]) x length, capacity, filled
+        // ORDER: id, name, length of spaces, array of spaces, capacity, filled
         dest.writeInt(id);
         dest.writeString(name);
-        dest.writeInt(rows.length);
-        for (ParkingSpace[] row : rows)
-        {
-            dest.writeInt(row.length);
-            dest.writeTypedArray(row, flags);
-        }
+        dest.writeInt(spaces.length);
+        dest.writeTypedArray(spaces, flags);
         dest.writeInt(capacity);
         dest.writeInt(filled);
     }
