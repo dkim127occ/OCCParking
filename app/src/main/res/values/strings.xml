@@ -13,6 +13,7 @@
     <string name="capacity_fmt">Capacity: %1$d</string>
     <string name="occupied_fmt">Occupied: %1$d</string>
     <string name="free_fmt">Free: %1$d</string>
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>

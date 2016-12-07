@@ -13,6 +13,13 @@
     tools:context="edu.orangecoastcollege.cs273.dkim127.occparking.LotCDetailsActivity"
     android:orientation="horizontal">
 
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/lotCMapFragment"
+        android:layout_weight="1" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

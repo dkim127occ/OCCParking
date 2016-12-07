@@ -11,6 +11,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.orangecoastcollege.cs273.dkim127.occparking.LotBDetailsActivity"
     android:orientation="vertical">
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/lotBMapFragment" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
