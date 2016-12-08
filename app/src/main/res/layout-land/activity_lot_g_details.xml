@@ -19,22 +19,23 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:id="@+id/lotGMapFragment"
         android:layout_weight="1" />
-
+<!--
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         app:srcCompat="@drawable/lot_g"
         android:id="@+id/imageView2"
         android:adjustViewBounds="true"/>
-
+-->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dp">
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1">
 
         <TextView
-            android:text="@string/parking_adams_fmt"
+            android:text="@string/parking_g_fmt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/adamsDetailTextView"
