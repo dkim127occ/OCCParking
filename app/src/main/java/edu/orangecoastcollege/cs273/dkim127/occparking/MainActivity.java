@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView lotGTextView;
     private ImageView mapMaskView;
 
-    ParkingLot parkingLot;
     ArrayList<ParkingLot> parkingLotArrayList;
     Context context;
     DBHelper db;
@@ -73,6 +72,22 @@ public class MainActivity extends AppCompatActivity {
         return hotSpots.getPixel(x, y) & 0xFFFFFF;
     }
 
+    /**
+     * Returns a ParkingLot object that shares the same name as the argument.
+     * @param tableName name of the parking lot
+     * @return ParkingLot with the same name from the array list, null if not found
+     */
+    public ParkingLot findLotByName(String tableName)
+    {
+        for (ParkingLot lot : parkingLotArrayList)
+        {
+            if (lot.getName().equals(tableName))
+            {
+                return lot;
+            }
+        }
+        return null;
+    }
 
     /**
      * Listener for tapping regions in the main parking lot imageview
@@ -90,23 +105,45 @@ public class MainActivity extends AppCompatActivity {
                 int tolerance = 0xf;
 
                 Intent intent = new Intent();
+                ParkingLot parkingLot;
 
-                if (ColorTool.closeMatch(ColorTool.ADAMS, touchColor, tolerance)) {
+                if (ColorTool.closeMatch(ColorTool.ADAMS, touchColor, tolerance))
+                {
                     intent = new Intent(context, LotAdamsDetailActivity.class);
-                    Log.i("MainActivity", "adams clicked");
-                } else if (ColorTool.closeMatch(ColorTool.A, touchColor, tolerance)) {
+                    parkingLot = findLotByName(DBHelper.ADAMS_TABLE);
+                }
+                else if (ColorTool.closeMatch(ColorTool.A, touchColor, tolerance))
+                {
                     intent = new Intent(context, LotADetailsActivity.class);
-                } else if (ColorTool.closeMatch(ColorTool.B, touchColor, tolerance)) {
+                    parkingLot = findLotByName(DBHelper.A_TABLE);
+                }
+                else if (ColorTool.closeMatch(ColorTool.B, touchColor, tolerance))
+                {
                     intent = new Intent(context, LotBDetailsActivity.class);
-                } else if (ColorTool.closeMatch(ColorTool.C, touchColor, tolerance)) {
+                    parkingLot = findLotByName(DBHelper.B_TABLE);
+                }
+                else if (ColorTool.closeMatch(ColorTool.C, touchColor, tolerance))
+                {
                     intent = new Intent(context, LotCDetailsActivity.class);
-                } else if (ColorTool.closeMatch(ColorTool.D, touchColor, tolerance)) {
-                    //intent = new Intent(context, LotDDetailsActivity.class);
-                } else if (ColorTool.closeMatch(ColorTool.E, touchColor, tolerance)) {
+                    parkingLot = findLotByName(DBHelper.C_TABLE);
+                }
+                else if (ColorTool.closeMatch(ColorTool.D, touchColor, tolerance))
+                {
+                    intent = new Intent(context, LotDDetailsActivity.class);
+                    parkingLot = findLotByName(DBHelper.D_TABLE);
+                }
+                else if (ColorTool.closeMatch(ColorTool.E, touchColor, tolerance))
+                {
                     intent = new Intent(context, LotEDetails.class);
-                } else if (ColorTool.closeMatch(ColorTool.G, touchColor, tolerance)) {
+                    parkingLot = findLotByName(DBHelper.E_TABLE);
+                }
+                else if (ColorTool.closeMatch(ColorTool.G, touchColor, tolerance))
+                {
                     intent = new Intent(context, LotGDetails.class);
-                } else {
+                    parkingLot = findLotByName(DBHelper.G_TABLE);
+                }
+                else
+                {
                     // invalid color region
                     // terrible hack!
                     Log.i("MainActivity", "invalid color region " + Integer.toHexString(touchColor));

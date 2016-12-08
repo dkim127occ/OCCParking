@@ -90,6 +90,22 @@ public class ParkingLot implements Parcelable
         return name;
     }
 
+    /**
+     * Returns the number of filled spaces
+     * @return number of spaces filled
+     */
+    public int getFilled() {
+        return filled;
+    }
+
+    /**
+     * Returns the total number of parking spaces available
+     * @return total number of spaces
+     */
+    public int getCapacity() {
+        return capacity;
+    }
+
 
 
     /*
