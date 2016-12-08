@@ -12,9 +12,7 @@ public class ParkingLot implements Parcelable
 {
     public static final String TAG = "ParkingLot";
 
-    private int id;
     private String name;
-    // TODO: make this 1D
     private ParkingSpace[] spaces;
     private int capacity;
     private int filled;
@@ -64,9 +62,23 @@ public class ParkingLot implements Parcelable
         return null;
     }
 
-    public void setParkingspaces(ParkingSpace[] spaces)
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    public void setParkingSpaces(ParkingSpace[] spaces)
     {
         this.spaces = spaces;
+        capacity = spaces.length;
+        filled = 0;
+        for (ParkingSpace space : spaces)
+        {
+            if (space.isFilled() == 1)
+            {
+                filled++;
+            }
+        }
     }
 
     /**
@@ -78,6 +90,22 @@ public class ParkingLot implements Parcelable
         return name;
     }
 
+    /**
+     * Returns the number of filled spaces
+     * @return number of spaces filled
+     */
+    public int getFilled() {
+        return filled;
+    }
+
+    /**
+     * Returns the total number of parking spaces available
+     * @return total number of spaces
+     */
+    public int getCapacity() {
+        return capacity;
+    }
+
 
 
     /*
@@ -86,7 +114,6 @@ public class ParkingLot implements Parcelable
     private ParkingLot(Parcel source)
     {
         // ORDER: id, name, length of spaces, array of spaces, capacity, filled
-        id = source.readInt();
         name = source.readString();
         int rowsLen = source.readInt();
         spaces = new ParkingSpace[rowsLen];
@@ -116,7 +143,6 @@ public class ParkingLot implements Parcelable
     public void writeToParcel(Parcel dest, int flags)
     {
         // ORDER: id, name, length of spaces, array of spaces, capacity, filled
-        dest.writeInt(id);
         dest.writeString(name);
         dest.writeInt(spaces.length);
         dest.writeTypedArray(spaces, flags);
