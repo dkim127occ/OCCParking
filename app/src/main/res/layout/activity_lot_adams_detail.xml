@@ -15,21 +15,16 @@
 
     <fragment
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:id="@+id/lotAdamsMapfragment" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/adams"
-        android:id="@+id/imageView2"
-        android:adjustViewBounds="true"/>
+        android:id="@+id/lotAdamsMapfragment"
+        android:layout_weight="2"/>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <TextView
             android:text="@string/parking_adams_fmt"

@@ -17,9 +17,13 @@ public class ParkingLot implements Parcelable
     private int capacity;
     private int filled;
 
+    // statistics
+    private double avgFilled;
+
     public ParkingLot()
     {
         name = "";
+        avgFilled = capacity - Math.random() * 100;
     }
 
     /**
@@ -120,6 +124,7 @@ public class ParkingLot implements Parcelable
         source.readTypedArray(spaces, ParkingSpace.CREATOR);
         capacity = source.readInt();
         filled = source.readInt();
+        avgFilled = source.readDouble();
     }
 
     public static final Parcelable.Creator<ParkingLot> CREATOR = new Creator<ParkingLot>() {
@@ -148,5 +153,6 @@ public class ParkingLot implements Parcelable
         dest.writeTypedArray(spaces, flags);
         dest.writeInt(capacity);
         dest.writeInt(filled);
+        dest.writeDouble(avgFilled);
     }
 }
