@@ -40,7 +40,7 @@ public class LotADetailsActivity extends AppCompatActivity implements OnMapReady
         //LatLng lotPosition = new LatLng(33.668529, -117.914318); // Lot E
         //LatLng lotPosition = new LatLng(33.673720, -117.908795); // Lot G
 
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(lotPosition).zoom(14.0f).build();
+        CameraPosition cameraPosition = new CameraPosition.Builder().target(lotPosition).zoom(17.0f).build();
         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition((cameraPosition));
         mMap.moveCamera(cameraUpdate);
     }

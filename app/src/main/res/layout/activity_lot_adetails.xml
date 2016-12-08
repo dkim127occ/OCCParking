@@ -18,14 +18,14 @@
         android:id="@+id/lotAMapFragment"
         android:layout_height="0dp"
         android:layout_weight="1" />
-
+<!--
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/lot_a"
         android:id="@+id/lotAImageView"
         android:adjustViewBounds="true"/>
-
+-->
     <TextView
         android:text="@string/parking_a_fmt"
         android:layout_width="match_parent"
