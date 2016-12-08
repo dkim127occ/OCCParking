@@ -23,7 +23,7 @@ public class LotAdamsDetailActivity extends AppCompatActivity implements OnMapRe
 
         SupportMapFragment lotAdamsMapFragment =
                 (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.lotAdamsMapfragment);
+                .findFragmentById(R.id.lotAdamsMapFragment);
 
         lotAdamsMapFragment.getMapAsync(this);
 

@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:id="@+id/lotAdamsMapfragment"
+        android:id="@+id/lotAdamsMapFragment"
         android:layout_weight="2"/>
 
     <LinearLayout
