@@ -14,17 +14,18 @@
 
     <fragment
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:id="@+id/lotBMapFragment" />
-
+        android:id="@+id/lotBMapFragment"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+<!--
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/lot_b"
         android:id="@+id/lotBImageView"
         android:adjustViewBounds="true"/>
-
+-->
     <TextView
         android:text="@string/parking_b_fmt"
         android:layout_width="match_parent"
