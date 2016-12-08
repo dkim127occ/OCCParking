@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     ParkingLot parkingLot;
     ArrayList<ParkingLot> parkingLotArrayList;
     Context context;
+    DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,15 @@ public class MainActivity extends AppCompatActivity {
         mapMaskView = (ImageView) findViewById(R.id.mapImageView);
 
         mapMaskView.setOnTouchListener(touchListener);
+
+        // DB related stuff
+        deleteDatabase(DBHelper.DATABASE_NAME);
+        db = new DBHelper(this);
+        db.importDatabaseFromCsv("lot_a.csv", DBHelper.A_TABLE);
+        db.importDatabaseFromCsv("lot_b.csv", DBHelper.B_TABLE);
+        db.importDatabaseFromCsv("lot_c.csv", DBHelper.C_TABLE);
+
+        parkingLotArrayList = db.getAllLots();
     }
 
 

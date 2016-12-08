@@ -1,12 +1,20 @@
 package edu.orangecoastcollege.cs273.dkim127.occparking;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.annotation.StringDef;
+import android.util.Log;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class DBHelper extends SQLiteOpenHelper
@@ -120,6 +128,11 @@ public class DBHelper extends SQLiteOpenHelper
         onCreate(db);
     }
 
+    /**
+     * Returns a ParkingLot object that matches the given lot name.
+     * @param lotName name of the parking lot
+     * @return ParkingLot instance, or null if not found
+     */
     public ParkingLot getLot(@Lot String lotName)
     {
         // TODO: this is wrong as heck
@@ -153,10 +166,15 @@ public class DBHelper extends SQLiteOpenHelper
         }
 
         ParkingLot lot = new ParkingLot();
-        lot.setParkingspaces((ParkingSpace[]) spaces.toArray());
+        lot.setParkingSpaces(spaces.toArray(new ParkingSpace[spaces.size()]));
+        lot.setName(lotName);
         return lot;
     }
 
+    /**
+     * Gets all the parking lots in this database.
+     * @return ArrayList of all ParkingLot objects
+     */
     public ArrayList<ParkingLot> getAllLots()
     {
         // TODO: gotta implement this
@@ -172,4 +190,94 @@ public class DBHelper extends SQLiteOpenHelper
 
         return allLots;
     }
+
+    /**
+     * Adds the given parking space to the database.
+     * @param parkingSpace ParkingSpace object to add to the database
+     * @param tableName name of the table to insert into
+     */
+    public void addParkingSpace(ParkingSpace parkingSpace, @Lot String tableName)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(PARKING_LOT_KEY_FIELD_ID, parkingSpace.getId());
+        values.put(FIELD_SPACE_TYPE, parkingSpace.getType());
+        values.put(FIELD_LATITUDE, parkingSpace.getLatitude());
+        values.put(FIELD_LONGITUDE, parkingSpace.getLongitude());
+        values.put(FIELD_FILLED, parkingSpace.isFilled());
+
+        db.insert(tableName, null, values);
+        db.close();
+    }
+
+    /**
+     * Updates the given ParkingSpace object
+     * @param space ParkingSpace object to update
+     * @param tableName name of the table where this object should be
+     */
+    public void updateParkingSpace(ParkingSpace space, @Lot String tableName)
+    {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(FIELD_FILLED, space.isFilled());
+        values.put(FIELD_SPACE_TYPE, space.getType());
+        values.put(FIELD_LATITUDE, space.getLatitude());
+        values.put(FIELD_LONGITUDE, space.getLongitude());
+
+        db.update(tableName, values, PARKING_LOT_KEY_FIELD_ID + " = ?",
+                new String[]{String.valueOf(space.getId())});
+        db.close();
+    }
+
+    /**
+     * Imports the database tables from .csv files.
+     * @param csvFileName name of the csv file
+     * @param tableName name of the table to populate
+     * @return true if successful, false otherwise
+     */
+    public boolean importDatabaseFromCsv(String csvFileName, @Lot String tableName)
+    {
+        AssetManager am = mContext.getAssets();
+        InputStream inStream = null;
+        try
+        {
+            inStream = am.open(csvFileName);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        BufferedReader buffer = new BufferedReader(new InputStreamReader(inStream));
+        String line;
+        try
+        {
+            while((line = buffer.readLine()) != null)
+            {
+                String[] fields = line.split(",");
+                if (fields.length != 5)
+                {
+                    Log.d("ParkingLot", "skipping bad csv row: " + Arrays.toString(fields));
+                    continue;
+                }
+                int id = Integer.parseInt(fields[0].trim());
+                String spaceType = fields[1].trim();
+                float latitude = Float.parseFloat(fields[2].trim());
+                float longitude = Float.parseFloat(fields[3].trim());
+                int filled = Integer.parseInt(fields[4].trim());
+
+                addParkingSpace(new ParkingSpace(id, spaceType, latitude, longitude, filled), tableName);
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
 }
