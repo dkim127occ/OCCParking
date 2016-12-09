@@ -48,9 +48,13 @@ public class MainActivity extends AppCompatActivity {
         // DB related stuff
         deleteDatabase(DBHelper.DATABASE_NAME);
         db = new DBHelper(this);
+        db.importDatabaseFromCsv("lot_adams.csv", DBHelper.ADAMS_TABLE);
         db.importDatabaseFromCsv("lot_a.csv", DBHelper.A_TABLE);
         db.importDatabaseFromCsv("lot_b.csv", DBHelper.B_TABLE);
         db.importDatabaseFromCsv("lot_c.csv", DBHelper.C_TABLE);
+        db.importDatabaseFromCsv("lot_d.csv", DBHelper.D_TABLE);
+        db.importDatabaseFromCsv("lot_e.csv", DBHelper.E_TABLE);
+        db.importDatabaseFromCsv("lot_g.csv", DBHelper.G_TABLE);
 
         parkingLotArrayList = db.getAllLots();
     }
