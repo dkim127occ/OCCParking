@@ -110,6 +110,15 @@ public class ParkingLot implements Parcelable
         return capacity;
     }
 
+    /**
+     * Returns the simulated average number of filled spaces for this lot.
+     * @return simulated average of filled lots
+     */
+    public double getAvgFilled()
+    {
+        return avgFilled;
+    }
+
 
 
     /*

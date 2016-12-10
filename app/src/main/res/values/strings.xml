@@ -15,5 +15,10 @@
     <string name="free_fmt">Free: %1$d</string>
     <string name="title_activity_maps">Map</string>
 
+    <string name="lot_stats">Lot %1$s Statistics</string>
+    <string name="avg_occupied_fmt">Occupied (average): %1$.02f</string>
+    <string name="avg_free_fmt">Free (average): %1$.02f</string>
+    <string name="avg_filled_fmt">Percentage Filled (average): %1$.02f%%</string>
+    <string name="stats_credits">Application by: \nFreddy Juarez, Justin Kloppenburg, Austin Kim</string>
 
 </resources>
