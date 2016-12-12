@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
+import com.google.android.gms.common.stats.StatsEvent;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,6 +21,7 @@ public class LotADetailsActivity extends AppCompatActivity implements OnMapReady
 
     private GoogleMap mMap;
     private LatLng lotPosition;
+    private ParkingLot lot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,19 @@ public class LotADetailsActivity extends AppCompatActivity implements OnMapReady
         SupportMapFragment lotAMapFragment =
                 (SupportMapFragment) getSupportFragmentManager()
                         .findFragmentById(R.id.lotAMapFragment);
+        lot = getIntent().getParcelableExtra(ParkingLot.TAG);
+
+        TextView lotATextView = (TextView) findViewById(R.id.lotATextView);
+        TextView lotAFreeTextView = (TextView) findViewById(R.id.lotAFreeTextView);
+        TextView lotAOccupiedTextView = (TextView) findViewById(R.id.lotAOccupiedTextView);
+        TextView lotACapacityTextView = (TextView) findViewById(R.id.lotACapacityTextView);
+
+        double percentFilled = lot.getFilled() * 100.0 / lot.getCapacity();
+
+        lotATextView.setText(getString(R.string.parking_a_fmt, percentFilled));
+        lotAFreeTextView.setText(getString(R.string.free_fmt, lot.getFree()));
+        lotAOccupiedTextView.setText(getString(R.string.occupied_fmt, lot.getFilled()));
+        lotACapacityTextView.setText(getString(R.string.capacity_fmt, lot.getCapacity()));
 
         lotAMapFragment.getMapAsync(this);
     }
@@ -59,6 +75,14 @@ public class LotADetailsActivity extends AppCompatActivity implements OnMapReady
 
         intent.putExtra("lotPosition", lotPosition);
 
+        startActivity(intent);
+    }
+
+    public void viewStats(View view)
+    {
+        Intent intent = new Intent(this, StatisticsActivity.class);
+        intent.putExtra(ParkingLot.TAG, lot);
+        intent.putExtra("image_id", R.drawable.lot_a);
         startActivity(intent);
     }
 }

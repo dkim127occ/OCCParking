@@ -17,7 +17,7 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:id="@+id/lotAMapFragment"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="2" />
 <!--
     <ImageView
         android:layout_width="match_parent"
@@ -26,39 +26,61 @@
         android:id="@+id/lotAImageView"
         android:adjustViewBounds="true"/>
 -->
-    <TextView
-        android:text="@string/parking_a_fmt"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lotATextView"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:layout_marginTop="10dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <TextView
-        android:text="@string/free_fmt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lotAFreeTextView"/>
+        <TextView
+            android:text="@string/parking_a_fmt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lotATextView"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:layout_marginTop="10dp"/>
 
-    <TextView
-        android:text="@string/occupied_fmt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lotAOccupiedTextView"/>
+        <TextView
+            android:text="@string/free_fmt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lotAFreeTextView"/>
 
-    <TextView
-        android:text="@string/capacity_fmt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lotACapacityTextView"/>
+        <TextView
+            android:text="@string/occupied_fmt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lotAOccupiedTextView"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:onClick="findSpace"
-        android:text="@string/find_space_text" />
+        <TextView
+            android:text="@string/capacity_fmt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lotACapacityTextView"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/button"
+                android:onClick="findSpace"
+                android:text="@string/find_space_text"
+                android:layout_weight="2"/>
+
+            <Button
+                android:text="@string/statistics"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/aStatsButton"
+                android:layout_weight="1"
+                android:onClick="viewStats"/>
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>
 

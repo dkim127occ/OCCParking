@@ -19,6 +19,7 @@ public class LotCDetailsActivity extends AppCompatActivity implements OnMapReady
 
     private GoogleMap mMap;
     private LatLng lotPosition;
+    private ParkingLot lot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class LotCDetailsActivity extends AppCompatActivity implements OnMapReady
         lotCMapFragment.getMapAsync(this);
 
         Intent intent = getIntent();
-        ParkingLot lot =  intent.getParcelableExtra(ParkingLot.TAG);
+        lot =  intent.getParcelableExtra(ParkingLot.TAG);
 
         TextView lotCDetailTextView = (TextView) findViewById(R.id.lotCDetailTextView);
         lotCDetailTextView.setText(getString(R.string.parking_c_fmt, lot.getFilled() * 100.0 / lot.getCapacity()));
@@ -74,6 +75,14 @@ public class LotCDetailsActivity extends AppCompatActivity implements OnMapReady
 
         intent.putExtra("lotPosition", lotPosition);
 
+        startActivity(intent);
+    }
+
+    public void viewStats(View view)
+    {
+        Intent intent = new Intent(this, StatisticsActivity.class);
+        intent.putExtra(ParkingLot.TAG, lot);
+        intent.putExtra("image_id", R.drawable.lot_c);
         startActivity(intent);
     }
 }

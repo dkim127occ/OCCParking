@@ -23,7 +23,14 @@ public class ParkingLot implements Parcelable
     public ParkingLot()
     {
         name = "";
-        avgFilled = capacity - Math.random() * 100;
+    }
+
+    /**
+     * Generates a simulated average filled for parking lots
+     */
+    private void generateAvgFilled()
+    {
+        avgFilled = capacity - Math.random() * 200;
     }
 
     /**
@@ -119,6 +126,17 @@ public class ParkingLot implements Parcelable
         return avgFilled;
     }
 
+    /**
+     * Returns the number of free spaces in this lot.
+     * @return number of spaces empty
+     */
+    public int getFree()
+    {
+        return capacity - filled;
+    }
+
+
+
 
 
     /*
@@ -134,6 +152,8 @@ public class ParkingLot implements Parcelable
         capacity = source.readInt();
         filled = source.readInt();
         avgFilled = source.readDouble();
+
+        generateAvgFilled();
     }
 
     public static final Parcelable.Creator<ParkingLot> CREATOR = new Creator<ParkingLot>() {

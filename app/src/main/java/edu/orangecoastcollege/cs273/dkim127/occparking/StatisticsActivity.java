@@ -27,8 +27,10 @@ public class StatisticsActivity extends AppCompatActivity {
 
         statsTitleTextView.setText(getString(R.string.lot_stats, lot.getName().substring(lot.getName().indexOf('_') + 1)));
         statsCapacityTextView.setText(getString(R.string.capacity_fmt, lot.getCapacity()));
-        statsOccupiedTextView.setText(getString(R.string.avg_filled_fmt, lot.getAvgFilled()));
+        statsOccupiedTextView.setText(getString(R.string.avg_occupied_fmt, lot.getAvgFilled()));
         statsFreeTextView.setText(getString(R.string.avg_free_fmt, lot.getCapacity() - lot.getAvgFilled()));
-        statsFilledTextView.setText(getString(R.string.avg_filled_fmt, lot.getAvgFilled() / lot.getCapacity()));
+        statsFilledTextView.setText(getString(R.string.avg_filled_fmt, lot.getAvgFilled() / lot.getCapacity() * 100));
+
+        statsImageView.setImageResource(imageId);
     }
 }
