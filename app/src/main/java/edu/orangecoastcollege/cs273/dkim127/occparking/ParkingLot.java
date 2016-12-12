@@ -135,6 +135,15 @@ public class ParkingLot implements Parcelable
         return capacity - filled;
     }
 
+    /**
+     * Returns the percentage of lots filled for this lot
+     * @return percent filled for this lot
+     */
+    public double getPercentFull()
+    {
+        return filled * 100.0 / capacity;
+    }
+
 
 
 

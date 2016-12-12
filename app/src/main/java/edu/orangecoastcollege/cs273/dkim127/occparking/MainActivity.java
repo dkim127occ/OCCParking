@@ -56,6 +56,23 @@ public class MainActivity extends AppCompatActivity {
         //db.importDatabaseFromCsv("lot_e.csv", DBHelper.E_TABLE);
         //db.importDatabaseFromCsv("lot_g.csv", DBHelper.G_TABLE);
 
+        TextView lotAdamsTextView = (TextView) findViewById(R.id.lotAdamsTextView);
+        TextView lotATextView = (TextView) findViewById(R.id.lotATextView);
+        TextView lotBTextView = (TextView) findViewById(R.id.lotBTextView);
+        TextView lotCTextView = (TextView) findViewById(R.id.lotCTextView);
+        TextView lotDTextView = (TextView) findViewById(R.id.lotDTextView);
+        TextView lotETextView = (TextView) findViewById(R.id.lotETextView);
+        TextView lotGTextView = (TextView) findViewById(R.id.lotGTextView);
+
+        lotAdamsTextView.setText(getString(R.string.parking_adams_fmt, Math.random() * 100));
+        lotATextView.setText(getString(R.string.parking_a_fmt, db.getLot(DBHelper.A_TABLE).getPercentFull()));
+        lotBTextView.setText(getString(R.string.parking_b_fmt, db.getLot(DBHelper.B_TABLE).getPercentFull()));
+        lotCTextView.setText(getString(R.string.parking_c_fmt, db.getLot(DBHelper.C_TABLE).getPercentFull()));
+        lotDTextView.setText(getString(R.string.parking_d_fmt, Math.random() * 100));
+        lotETextView.setText(getString(R.string.parking_e_fmt, Math.random() * 100));
+        lotGTextView.setText(getString(R.string.parking_g_fmt, Math.random() * 100));
+
+
         parkingLotArrayList = db.getAllLots();
     }
 
