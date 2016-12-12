@@ -61,6 +61,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/bCapacityTextView"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+            android:onClick="findSpace"
+            android:text="@string/find_space_text" />
+
     </LinearLayout>
 
 </LinearLayout>

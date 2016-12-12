@@ -21,4 +21,16 @@
     <string name="avg_filled_fmt">Percentage Filled (average): %1$.02f%%</string>
     <string name="stats_credits">Application by: \nFreddy Juarez, Justin Kloppenburg, Austin Kim</string>
 
+    <string name="find_space_text">Find Space</string>
+
+    <!-- parking lot names -->
+    <string name="lot_adams">Adams Lot</string>
+    <string name="lot_a">Lot A</string>
+    <string name="lot_b">Lot B</string>
+    <string name="lot_c">Lot C</string>
+    <string name="lot_d">Lot D</string>
+    <string name="lot_e">Lot E</string>
+    <string name="lot_g">Lot G</string>
+
+
 </resources>

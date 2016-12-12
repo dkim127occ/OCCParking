@@ -1,7 +1,9 @@
 package edu.orangecoastcollege.cs273.dkim127.occparking;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -10,10 +12,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class LotADetailsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private LatLng lotPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +38,7 @@ public class LotADetailsActivity extends AppCompatActivity implements OnMapReady
         mMap = googleMap;
 
         //LatLng lotPosition = new LatLng(33.672789, -117.912411); // Adams Lot
-        LatLng lotPosition = new LatLng(33.670884, -117.908454); // Lot A
+        lotPosition = new LatLng(33.670884, -117.908454); // Lot A
         //LatLng lotPosition = new LatLng(33.669554, -117.908283); // Lot B
         //LatLng lotPosition = new LatLng(33.668098, -117.908650); // Lot C
         //LatLng lotPosition = new LatLng(33.667813, -117.910742); // Lot D
@@ -43,5 +48,17 @@ public class LotADetailsActivity extends AppCompatActivity implements OnMapReady
         CameraPosition cameraPosition = new CameraPosition.Builder().target(lotPosition).zoom(17.0f).build();
         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition((cameraPosition));
         mMap.moveCamera(cameraUpdate);
+
+        // Add marker to lot
+        mMap.addMarker(new MarkerOptions().position(lotPosition).title(getString(R.string.lot_a)));
+    }
+
+    public void findSpace(View view)
+    {
+        Intent intent = new Intent(this, FindSpaceActivity.class);
+
+        intent.putExtra("lotPosition", lotPosition);
+
+        startActivity(intent);
     }
 }

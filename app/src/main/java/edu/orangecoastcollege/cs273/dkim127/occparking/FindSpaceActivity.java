@@ -3,7 +3,6 @@ package edu.orangecoastcollege.cs273.dkim127.occparking;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -12,9 +11,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
-public class LotAdamsDetailActivity extends AppCompatActivity implements OnMapReadyCallback {
+import static edu.orangecoastcollege.cs273.dkim127.occparking.R.id.lotAMapFragment;
+
+public class FindSpaceActivity extends AppCompatActivity implements OnMapReadyCallback{
 
     private GoogleMap mMap;
     private LatLng lotPosition;
@@ -22,38 +22,26 @@ public class LotAdamsDetailActivity extends AppCompatActivity implements OnMapRe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lot_adams_detail);
+        setContentView(R.layout.activity_find_space);
 
-        SupportMapFragment lotAdamsMapFragment =
+        SupportMapFragment mapFragment =
                 (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.lotAdamsMapFragment);
+                        .findFragmentById(R.id.mapFragment);
 
-        lotAdamsMapFragment.getMapAsync(this);
+        mapFragment.getMapAsync(this);
 
-        Intent intent = getIntent();
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        // change the camera view to the current location
         mMap = googleMap;
+        Intent intent = getIntent();
+        lotPosition = (LatLng) intent.getParcelableExtra("lotPosition");
 
-        lotPosition = new LatLng(33.672789, -117.912411); // Adams Lot
         CameraPosition cameraPosition = new CameraPosition.Builder().target(lotPosition).zoom(17.0f).build();
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition((cameraPosition));
         mMap.moveCamera(cameraUpdate);
 
-        // Add marker to lot
-        mMap.addMarker(new MarkerOptions().position(lotPosition).title(getString(R.string.lot_adams)));
-
-    }
-
-    public void findSpace(View viw)
-    {
-        Intent intent = new Intent(this, FindSpaceActivity.class);
-
-        intent.putExtra("lotPosition", lotPosition);
-
-        startActivity(intent);
     }
 }
