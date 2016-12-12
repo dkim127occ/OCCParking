@@ -32,7 +32,18 @@
     <string name="lot_e">Lot E</string>
     <string name="lot_g">Lot G</string>
 
+    <string name="open_space">Open Space</string>
+
     <string name="statistics">Statistics</string>
+
+    <!-- spinner name values -->
+    <string-array name="space_type">
+        <item>Standard</item>
+        <item>Coin</item>
+        <item>20 Minute</item>
+        <item>Handicap</item>
+        <item>Staff</item>
+    </string-array>
 
 
 </resources>

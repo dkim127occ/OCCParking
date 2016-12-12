@@ -73,6 +73,25 @@ public class ParkingLot implements Parcelable
         return null;
     }
 
+    /**
+     * Returns a parking space of a certain type
+     * @param type Which type of space will be available.
+     * @return ParkingSpace of the given type, null otherwise
+     */
+    public ParkingSpace findOpenParkingSpace(String type)
+    {
+        for (ParkingSpace parkingSpace : spaces)
+        {
+            if (parkingSpace.getType().equals(type) && parkingSpace.isFilled() == parkingSpace.EMPTY)
+            {
+                return parkingSpace;
+            }
+        }
+
+        Log.e("ParkingLot", "No open space found");
+        return null;
+    }
+
     public void setName(String name)
     {
         this.name = name;

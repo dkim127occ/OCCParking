@@ -74,7 +74,7 @@ public class LotCDetailsActivity extends AppCompatActivity implements OnMapReady
         Intent intent = new Intent(this, FindSpaceActivity.class);
 
         intent.putExtra("lotPosition", lotPosition);
-
+        intent.putExtra(ParkingLot.TAG, lot);
         startActivity(intent);
     }
 

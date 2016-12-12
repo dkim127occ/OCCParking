@@ -18,6 +18,7 @@ public class LotAdamsDetailActivity extends AppCompatActivity implements OnMapRe
 
     private GoogleMap mMap;
     private LatLng lotPosition;
+    private ParkingLot lot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class LotAdamsDetailActivity extends AppCompatActivity implements OnMapRe
         SupportMapFragment lotAdamsMapFragment =
                 (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.lotAdamsMapFragment);
+        lot = getIntent().getParcelableExtra(ParkingLot.TAG);
 
         lotAdamsMapFragment.getMapAsync(this);
 
@@ -53,7 +55,7 @@ public class LotAdamsDetailActivity extends AppCompatActivity implements OnMapRe
         Intent intent = new Intent(this, FindSpaceActivity.class);
 
         intent.putExtra("lotPosition", lotPosition);
-
+        intent.putExtra(ParkingLot.TAG, lot);
         startActivity(intent);
     }
 }

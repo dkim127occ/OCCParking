@@ -18,6 +18,7 @@ public class LotGDetails extends AppCompatActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private LatLng lotPosition;
+    private ParkingLot lot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class LotGDetails extends AppCompatActivity implements OnMapReadyCallback
         SupportMapFragment lotGMapFragment =
                 (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.lotGMapFragment);
+        lot = getIntent().getParcelableExtra(ParkingLot.TAG);
 
         lotGMapFragment.getMapAsync(this);
     }
@@ -57,7 +59,7 @@ public class LotGDetails extends AppCompatActivity implements OnMapReadyCallback
         Intent intent = new Intent(this, FindSpaceActivity.class);
 
         intent.putExtra("lotPosition", lotPosition);
-
+        intent.putExtra(ParkingLot.TAG, lot);
         startActivity(intent);
     }
 }

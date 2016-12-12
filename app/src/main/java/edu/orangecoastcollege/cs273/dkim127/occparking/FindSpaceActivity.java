@@ -3,6 +3,11 @@ package edu.orangecoastcollege.cs273.dkim127.occparking;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -11,13 +16,17 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import static edu.orangecoastcollege.cs273.dkim127.occparking.R.id.lotAMapFragment;
 
-public class FindSpaceActivity extends AppCompatActivity implements OnMapReadyCallback{
+public class FindSpaceActivity extends AppCompatActivity implements OnMapReadyCallback, AdapterView.OnItemSelectedListener{
 
     private GoogleMap mMap;
     private LatLng lotPosition;
+    private Spinner spaceTypeSpinner;
+    private ParkingLot lot;
+    private String selectedType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +39,19 @@ public class FindSpaceActivity extends AppCompatActivity implements OnMapReadyCa
 
         mapFragment.getMapAsync(this);
 
+
+        spaceTypeSpinner = (Spinner) findViewById(R.id.spaceTypeSpinner);
+        spaceTypeSpinner.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(this,
+                    R.array.space_type, android.R.layout.simple_spinner_item);
+
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spaceTypeSpinner.setAdapter(spinnerAdapter);
+
+        lot = getIntent().getParcelableExtra(ParkingLot.TAG);
+
+        selectedType = "normal";
     }
 
 
@@ -37,11 +59,40 @@ public class FindSpaceActivity extends AppCompatActivity implements OnMapReadyCa
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         Intent intent = getIntent();
-        lotPosition = (LatLng) intent.getParcelableExtra("lotPosition");
+        lotPosition = intent.getParcelableExtra("lotPosition");
 
         CameraPosition cameraPosition = new CameraPosition.Builder().target(lotPosition).zoom(17.0f).build();
         CameraUpdate cameraUpdate = CameraUpdateFactory.newCameraPosition((cameraPosition));
         mMap.moveCamera(cameraUpdate);
 
+        markSpace();
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // TODO: Change selectedType to match spinner choice.
+        markSpace();
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    public void markSpace()
+    {
+        mMap.clear();
+
+        ParkingSpace parkingSpace = lot.findOpenParkingSpace(selectedType);
+        if (parkingSpace == null)
+        {
+            Toast.makeText(this, "No open space available.", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            mMap.addMarker(new MarkerOptions().position(lotPosition).title(getString(R.string.open_space)));
+        }
     }
 }
