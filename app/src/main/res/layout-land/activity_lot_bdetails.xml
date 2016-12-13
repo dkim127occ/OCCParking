@@ -39,7 +39,7 @@
             android:text="@string/parking_b_fmt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/bDetailTextView"
+            android:id="@+id/lotBTextView"
             android:textAlignment="center"
             android:textSize="24sp"
             android:layout_marginTop="10dp"/>
@@ -48,19 +48,19 @@
             android:text="@string/free_fmt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/bFreeTextView"/>
+            android:id="@+id/lotBFreeTextView"/>
 
         <TextView
             android:text="@string/occupied_fmt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/bOccupiedTextView"/>
+            android:id="@+id/lotBOccupiedTextView"/>
 
         <TextView
             android:text="@string/capacity_fmt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/bCapacityTextView"/>
+            android:id="@+id/lotBCapacityTextView"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

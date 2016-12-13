@@ -39,7 +39,7 @@ public class LotBDetailsActivity extends AppCompatActivity implements OnMapReady
 
         double percentFilled = lot.getFilled() * 100.0 / lot.getCapacity();
 
-        lotBTextView.setText(getString(R.string.parking_a_fmt, percentFilled));
+        lotBTextView.setText(getString(R.string.parking_b_fmt, percentFilled));
         lotBFreeTextView.setText(getString(R.string.free_fmt, lot.getFree()));
         lotBOccupiedTextView.setText(getString(R.string.occupied_fmt, lot.getFilled()));
         lotBCapacityTextView.setText(getString(R.string.capacity_fmt, lot.getCapacity()));
