@@ -22,7 +22,7 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_weight="1">
@@ -53,12 +53,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/dCapacityTextView"/>
-        <Button
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/button"
-            android:onClick="findSpace"
-            android:text="@string/find_space_text" />
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button"
+                android:onClick="findSpace"
+                android:text="@string/find_space_text"
+                android:layout_weight="1"/>
+
+            <Button
+                android:text="@string/statistics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dStatsButton"
+                android:layout_weight="1"
+                android:onClick="viewStats"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

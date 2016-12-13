@@ -12,7 +12,10 @@
 
     <string name="capacity_fmt">Capacity: %1$d</string>
     <string name="occupied_fmt">Occupied: %1$d</string>
+    <string name="occupied_txt">Occupied: </string>
     <string name="free_fmt">Free: %1$d</string>
+    <string name="free_txt">Free: </string>
+    <string name="types_txt">Types: </string>
     <string name="title_activity_maps">Map</string>
 
     <string name="lot_stats">Lot %1$s Statistics</string>
@@ -36,6 +39,17 @@
 
     <string name="statistics">Statistics</string>
 
+    <string name="view_all">View all</string>
+
+    <!-- parking lot types -->
+    <string name="adams_types">Standard</string>
+    <string name="lot_a_types">Standard, Coin, 20 mins, Staff, Handicap</string>
+    <string name="lot_b_types">Standard, Staff, Handicap, Ev</string>
+    <string name="lot_c_types">Standard, Coin</string>
+    <string name="lot_d_type">Standard</string>
+    <string name="lot_e_types">Standard</string>
+    <string name="lot_g_types">Standard</string>
+
     <!-- spinner name values -->
     <string-array name="space_type">
         <item>Standard</item>
@@ -44,6 +58,5 @@
         <item>Handicap</item>
         <item>Staff</item>
     </string-array>
-
 
 </resources>

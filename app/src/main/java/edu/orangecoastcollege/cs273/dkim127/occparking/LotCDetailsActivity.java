@@ -1,8 +1,8 @@
 package edu.orangecoastcollege.cs273.dkim127.occparking;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -32,19 +32,18 @@ public class LotCDetailsActivity extends AppCompatActivity implements OnMapReady
 
         lotCMapFragment.getMapAsync(this);
 
-        Intent intent = getIntent();
-        lot =  intent.getParcelableExtra(ParkingLot.TAG);
+        lot = getIntent().getParcelableExtra(ParkingLot.TAG);
 
-        TextView lotCDetailTextView = (TextView) findViewById(R.id.lotCDetailTextView);
-        lotCDetailTextView.setText(getString(R.string.parking_c_fmt, lot.getFilled() * 100.0 / lot.getCapacity()));
-
+        TextView lotCTextView = (TextView) findViewById(R.id.lotCDetailTextView);
         TextView lotCFreeTextView = (TextView) findViewById(R.id.lotCFreeTextView);
-        lotCFreeTextView.setText(getString(R.string.free_fmt, lot.getCapacity() - lot.getFilled()));
-
         TextView lotCOccupiedTextView = (TextView) findViewById(R.id.lotCOccupiedTextView);
-        lotCOccupiedTextView.setText(getString(R.string.occupied_fmt, lot.getFilled()));
-
         TextView lotCCapacityTextView = (TextView) findViewById(R.id.lotCCapacityTextView);
+
+        double percentFilled = lot.getFilled() * 100.0 / lot.getCapacity();
+
+        lotCTextView.setText(getString(R.string.parking_c_fmt, percentFilled));
+        lotCFreeTextView.setText(getString(R.string.free_fmt, lot.getFree()));
+        lotCOccupiedTextView.setText(getString(R.string.occupied_fmt, lot.getFilled()));
         lotCCapacityTextView.setText(getString(R.string.capacity_fmt, lot.getCapacity()));
     }
 

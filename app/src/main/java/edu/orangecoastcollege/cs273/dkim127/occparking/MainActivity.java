@@ -3,9 +3,8 @@ package edu.orangecoastcollege.cs273.dkim127.occparking;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -75,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
         parkingLotArrayList = db.getAllLots();
     }
-
 
     /**
      * Returns a hexadecimal color value of the tapped area given the resource ID of tapped image and coordinates.
@@ -178,4 +176,10 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
+
+    public void atAGlance (View view)
+    {
+        Intent glanceIntent = new Intent(context, ParkingLotList.class);
+        startActivity(glanceIntent);
+    }
 }

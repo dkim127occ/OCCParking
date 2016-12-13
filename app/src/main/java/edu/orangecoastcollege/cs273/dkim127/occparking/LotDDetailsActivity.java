@@ -1,9 +1,10 @@
 package edu.orangecoastcollege.cs273.dkim127.occparking;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,7 +29,20 @@ public class LotDDetailsActivity extends AppCompatActivity implements OnMapReady
         SupportMapFragment lotDMapFragment =
                 (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.lotDMapFragment);
+
         lot = getIntent().getParcelableExtra(ParkingLot.TAG);
+
+        TextView lotDTextView = (TextView) findViewById(R.id.lotDTextView);
+        TextView lotDFreeTextView = (TextView) findViewById(R.id.lotDFreeTextView);
+        TextView lotDOccupiedTextView = (TextView) findViewById(R.id.lotDOccupiedTextView);
+        TextView lotDCapacityTextView = (TextView) findViewById(R.id.lotDCapacityTextView);
+
+        double percentFilled = lot.getFilled() * 100.0 / lot.getCapacity();
+
+        lotDTextView.setText(getString(R.string.parking_d_fmt, percentFilled));
+        lotDFreeTextView.setText(getString(R.string.free_fmt, lot.getFree()));
+        lotDOccupiedTextView.setText(getString(R.string.occupied_fmt, lot.getFilled()));
+        lotDCapacityTextView.setText(getString(R.string.capacity_fmt, lot.getCapacity()));
 
         lotDMapFragment.getMapAsync(this);
     }
@@ -54,6 +68,14 @@ public class LotDDetailsActivity extends AppCompatActivity implements OnMapReady
 
         intent.putExtra("lotPosition", lotPosition);
         intent.putExtra(ParkingLot.TAG, lot);
+        startActivity(intent);
+    }
+
+    public void viewStats(View view)
+    {
+        Intent intent = new Intent(this, StatisticsActivity.class);
+        intent.putExtra(ParkingLot.TAG, lot);
+        intent.putExtra("image_id", R.drawable.lot_d);
         startActivity(intent);
     }
 }

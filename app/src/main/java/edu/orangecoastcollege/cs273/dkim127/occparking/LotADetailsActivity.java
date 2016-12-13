@@ -1,12 +1,11 @@
 package edu.orangecoastcollege.cs273.dkim127.occparking;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.android.gms.common.stats.StatsEvent;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -14,7 +13,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class LotADetailsActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -31,6 +29,7 @@ public class LotADetailsActivity extends AppCompatActivity implements OnMapReady
         SupportMapFragment lotAMapFragment =
                 (SupportMapFragment) getSupportFragmentManager()
                         .findFragmentById(R.id.lotAMapFragment);
+
         lot = getIntent().getParcelableExtra(ParkingLot.TAG);
 
         TextView lotATextView = (TextView) findViewById(R.id.lotATextView);
