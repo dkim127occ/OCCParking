@@ -14,7 +14,7 @@
     android:orientation="vertical"
     android:clickable="true"
     android:onClick="atAGlance"
-    android:background="@color/wallet_highlighted_text_holo_light">
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -123,10 +123,11 @@
 
     </GridLayout>
 
-    <ImageView
-        app:srcCompat="@android:drawable/ic_dialog_info"
-        android:id="@+id/glanceImageView"
-        android:layout_gravity="right"
-        android:layout_width="40dp"
-        android:layout_height="40dp"/>
+    <Button
+        android:text="@string/view_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/atAglanceButton"
+        android:onClick="atAGlance"/>
+
 </LinearLayout>
