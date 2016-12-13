@@ -71,7 +71,27 @@ public class FindSpaceActivity extends AppCompatActivity implements OnMapReadyCa
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // TODO: Change selectedType to match spinner choice.
+        switch (position)
+        {
+            case 0:
+                selectedType = "normal";
+                break;
+            case 1:
+                selectedType = "coin";
+                break;
+            case 2:
+                selectedType = "twentyMin";
+                break;
+            case 3:
+                selectedType = "handicap";
+                break;
+            case 4:
+                selectedType = "staff";
+                break;
+            default:
+                selectedType = "normal";
+        }
+
         markSpace();
 
     }
@@ -92,7 +112,8 @@ public class FindSpaceActivity extends AppCompatActivity implements OnMapReadyCa
         }
         else
         {
-            mMap.addMarker(new MarkerOptions().position(lotPosition).title(getString(R.string.open_space)));
+            LatLng spacePosition = new LatLng(parkingSpace.getLatitude(), parkingSpace.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(spacePosition).title(getString(R.string.open_space)));
         }
     }
 }
