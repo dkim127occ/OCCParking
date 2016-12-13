@@ -101,6 +101,9 @@ public class FindSpaceActivity extends AppCompatActivity implements OnMapReadyCa
 
     }
 
+    /**
+     * Marks the map with a ParkingSpaceObject
+     */
     public void markSpace()
     {
         mMap.clear();
