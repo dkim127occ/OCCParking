@@ -19,15 +19,7 @@
         android:id="@+id/lotBMapFragment"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
-<!--
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:srcCompat="@drawable/lot_b"
-        android:id="@+id/imageView2"
-        android:adjustViewBounds="true"
-        android:layout_weight="1" />
--->
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
