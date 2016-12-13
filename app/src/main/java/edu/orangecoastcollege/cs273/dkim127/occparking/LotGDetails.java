@@ -38,12 +38,6 @@ public class LotGDetails extends AppCompatActivity implements OnMapReadyCallback
         //Change the camera view to our current position:
         mMap = googleMap;
 
-        //LatLng lotPosition = new LatLng(33.672789, -117.912411); // Adams Lot
-        //LatLng lotPosition = new LatLng(33.670884, -117.908454); // Lot A
-        //LatLng lotPosition = new LatLng(33.669554, -117.908283); // Lot B
-        //LatLng lotPosition = new LatLng(33.668098, -117.908650); // Lot C
-        //LatLng lotPosition = new LatLng(33.667813, -117.910742); // Lot D
-        //LatLng lotPosition = new LatLng(33.668529, -117.914318); // Lot E
         lotPosition = new LatLng(33.673720, -117.908795); // Lot G
 
         CameraPosition cameraPosition = new CameraPosition.Builder().target(lotPosition).zoom(17.0f).build();
