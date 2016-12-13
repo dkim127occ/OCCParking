@@ -1,9 +1,10 @@
 package edu.orangecoastcollege.cs273.dkim127.occparking;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,7 +29,20 @@ public class LotEDetails extends AppCompatActivity implements OnMapReadyCallback
         SupportMapFragment lotEMapFragment =
                 (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.lotEMapFragment);
+
         lot = getIntent().getParcelableExtra(ParkingLot.TAG);
+
+        TextView lotETextView = (TextView) findViewById(R.id.lotENameTextView);
+        TextView lotEFreeTextView = (TextView) findViewById(R.id.lotEFreeTextView);
+        TextView lotEOccupiedTextView = (TextView) findViewById(R.id.lotEOccupiedTextView);
+        TextView lotECapacityTextView = (TextView) findViewById(R.id.lotECapacityTextView);
+
+        double percentFilled = lot.getFilled() * 100.0 / lot.getCapacity();
+
+        lotETextView.setText(getString(R.string.parking_e_fmt, percentFilled));
+        lotEFreeTextView.setText(getString(R.string.free_fmt, lot.getFree()));
+        lotEOccupiedTextView.setText(getString(R.string.occupied_fmt, lot.getFilled()));
+        lotECapacityTextView.setText(getString(R.string.capacity_fmt, lot.getCapacity()));
 
         lotEMapFragment.getMapAsync(this);
     }
@@ -54,6 +68,14 @@ public class LotEDetails extends AppCompatActivity implements OnMapReadyCallback
 
         intent.putExtra("lotPosition", lotPosition);
         intent.putExtra(ParkingLot.TAG, lot);
+        startActivity(intent);
+    }
+
+    public void viewStats(View view)
+    {
+        Intent intent = new Intent(this, StatisticsActivity.class);
+        intent.putExtra(ParkingLot.TAG, lot);
+        intent.putExtra("image_id", R.drawable.lot_e);
         startActivity(intent);
     }
 }

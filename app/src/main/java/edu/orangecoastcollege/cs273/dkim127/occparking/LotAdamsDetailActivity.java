@@ -1,9 +1,10 @@
 package edu.orangecoastcollege.cs273.dkim127.occparking;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,11 +29,22 @@ public class LotAdamsDetailActivity extends AppCompatActivity implements OnMapRe
         SupportMapFragment lotAdamsMapFragment =
                 (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.lotAdamsMapFragment);
+
         lot = getIntent().getParcelableExtra(ParkingLot.TAG);
 
-        lotAdamsMapFragment.getMapAsync(this);
+        TextView adamsTextView = (TextView) findViewById(R.id.adamsDetailTextView);
+        TextView adamsFreeTextView = (TextView) findViewById(R.id.adamsFreeTextView);
+        TextView adamsOccupiedTextView = (TextView) findViewById(R.id.adamsOccupiedTextView);
+        TextView adamsCapacityTextView = (TextView) findViewById(R.id.adamsCapacityTextView);
 
-        Intent intent = getIntent();
+        double percentFilled = lot.getFilled() * 100.0 / lot.getCapacity();
+
+        adamsTextView.setText(getString(R.string.parking_adams_fmt, percentFilled));
+        adamsFreeTextView.setText(getString(R.string.free_fmt, lot.getFree()));
+        adamsOccupiedTextView.setText(getString(R.string.occupied_fmt, lot.getFilled()));
+        adamsCapacityTextView.setText(getString(R.string.capacity_fmt, lot.getCapacity()));
+
+        lotAdamsMapFragment.getMapAsync(this);
     }
 
     @Override
@@ -56,6 +68,14 @@ public class LotAdamsDetailActivity extends AppCompatActivity implements OnMapRe
 
         intent.putExtra("lotPosition", lotPosition);
         intent.putExtra(ParkingLot.TAG, lot);
+        startActivity(intent);
+    }
+
+    public void viewStats(View view)
+    {
+        Intent intent = new Intent(this, StatisticsActivity.class);
+        intent.putExtra(ParkingLot.TAG, lot);
+        intent.putExtra("image_id", R.drawable.adams);
         startActivity(intent);
     }
 }
