@@ -62,7 +62,11 @@ public class LotEDetails extends AppCompatActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(lotPosition).title(getString(R.string.lot_e)));
     }
 
-    public void findSpace(View viw)
+    /**
+     * opens the FindSpaceActivity when clicked.
+     * @param view the View associated with the activity
+     */
+    public void findSpace(View view)
     {
         Intent intent = new Intent(this, FindSpaceActivity.class);
 
@@ -71,6 +75,10 @@ public class LotEDetails extends AppCompatActivity implements OnMapReadyCallback
         startActivity(intent);
     }
 
+    /**
+     * opens the StatisticsActivity when clicked.
+     * @param view the view associated with the activity.
+     */
     public void viewStats(View view)
     {
         Intent intent = new Intent(this, StatisticsActivity.class);

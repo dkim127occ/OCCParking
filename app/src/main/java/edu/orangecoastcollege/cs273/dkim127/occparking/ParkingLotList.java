@@ -31,6 +31,10 @@ public class ParkingLotList extends AppCompatActivity {
 
     }
 
+    /**
+     * Opens a Lots corresponding details view and passes a the ParkingLot object.
+     * @param view the view where the ParkingLot object is located.
+     */
     public void openDetails(View view)
     {
         if (view instanceof LinearLayout) {

@@ -27,13 +27,14 @@ public class ParkingLotAdapter extends ArrayAdapter<ParkingLot> {
     private TextView lotItemFreeValueTextView;
     private TextView lotItemFillValueTextView;
 
-    private int standard;
-    private int coin;
-    private int staff;
-    private int twentyMin;
-    private int handicap;
-    private int ev;
 
+    /**
+     * Creates a new <code>ParkingLottAdapter</code> given a mContext, resource id and list of ParkingLots.
+     *
+     * @param context The mContext for which the adapter is being used (typically an activity)
+     * @param resourceId The resource id (typically the layout file name)
+     * @param allParkingLots The list of tasks to display
+     */
     public ParkingLotAdapter(Context context, int resourceId, List<ParkingLot> allParkingLots) {
 
         super(context, resourceId, allParkingLots);
@@ -42,6 +43,13 @@ public class ParkingLotAdapter extends ArrayAdapter<ParkingLot> {
         mAllParkingLots = allParkingLots;
     }
 
+    /**
+     * Gets the view associated with the layout (sets LinearLayout content).
+     * @param pos The position of the ParkingLot selected.
+     * @param convertView The converted view.
+     * @param parent The parent - ArrayAdapter
+     * @return The new view with all content (LinearLayout) set.
+     */
     @Override
     public View getView(int pos, View convertView, ViewGroup parent)
     {
